@@ -146,6 +146,11 @@ void koleso(int x0, int y0, float a, int r)
     a3+=2;
 }
 
+
+
+
+
+//функция main
 int main()
 {
 txCreateWindow (800, 600);
@@ -156,11 +161,12 @@ txCreateWindow (800, 600);
     int xMan = 660;
     int xManLegs = 0;
     int xManHands = 0;
+    int xBear = 500;
+    int yBear = 600;
     double razGrib = 1;
 
     float a = 0;
     int xKolesa = 100;
-
 
     while (xSun<50)
     {
@@ -182,7 +188,6 @@ txCreateWindow (800, 600);
         xManLegs = xManLegs + 10;
         xManHands = xManHands + 10;
         txSleep(50);
-
         txBegin();
         drawSky(RGB(162, 247, 251));
         drawSun(xSun, ySun);
@@ -201,6 +206,7 @@ txCreateWindow (800, 600);
         xManHands = xManHands - 10;
         txSleep(50);
     }
+
     while (xSun<1000)
     {
 
@@ -243,7 +249,7 @@ txCreateWindow (800, 600);
 
 
 
-    while (xCloud<1000)
+    while (xCloud<250)
     {
         txBegin();
         drawSky(RGB(64, 0, 128));
@@ -260,19 +266,51 @@ txCreateWindow (800, 600);
         //koleso(xKolesa, 400, a, 50);
         //koleso(xKolesa+100, 425, a, 25);
 
-        drawBeer(500, 470);
+        drawBeer(xBear, yBear);
 
 
         drawMan(xMan, xManLegs, xManHands);
 
 
-        txEnd();
 
+        txEnd();
+        yBear = yBear - 1;
+        xBear = xBear - 0.0000001;
         xCloud = xCloud + 1;
         xMan -= 4;
         a+=2;
-        //xKolesa += 5;
-        //razGrib = razGrib + 0.0005;
+        txSleep(10);
+    }
+
+    while (xCloud<500)
+    {
+        txBegin();
+        drawSky(RGB(64, 0, 128));
+
+        drawCloud(xCloud, 70);
+        drawLand(RGB(0, 64, 0));
+
+        drawHouse(TX_YELLOW);
+        drawTree(110, 485);
+        drawTree(190, 450);
+        drawTree(30, 450);
+        drawGrib(30);
+
+        //koleso(xKolesa, 400, a, 50);
+        //koleso(xKolesa+100, 425, a, 25);
+
+        drawBeer(xBear, yBear);
+
+
+        drawMan(xMan, xManLegs, xManHands);
+
+
+
+        txEnd();
+        //yBear = yBear - 1;
+        xCloud = xCloud + 1;
+        xMan -= 4;
+        a+=2;
         txSleep(10);
     }
 
